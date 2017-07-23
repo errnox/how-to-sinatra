@@ -1,0 +1,41 @@
+%div.container
+  %div.col-md-8.col-md-offset-2
+
+    %div.row
+      %div.btn-group.btn-group-sm.pull-right
+        %a.btn.btn-default{:href => '/todos'}
+          %span.fa.fa-list-ul
+          See all todos
+        %a.btn.btn-default{:href => "/todo/edit/#{@todo.id}", :title => 'Edit'}
+          %span.fa.fa-pencil
+          -# Edit
+        %a.btn.btn-default{:href => "/todo/delete/#{@todo.id}", :title => 'Delete'}
+          %span.fa.fa-times
+          -# Delete
+      %div.pull-left
+        %h2
+          %a.text-muted{:href => '/todos'}
+            %span.fa.fa-pencil-square-o
+            Todo
+
+    %div.row
+      %div.col-md-12
+        %p.text-center.alert
+          - if @todo.status != 0
+            %span.label.label-success
+              %span.fa.fa-check-square
+              %em Completed
+          - else
+            %span.label.label-default
+              %em Not completed yet
+        %h3= @todo.name
+
+    %p
+      - if @todo.description.blank?
+        %em
+          No description (
+          %a{:href => "/todo/edit/#{@todo.id}"} Add one
+          )
+      - else
+        %pre.text-left= @todo.description
+    %hr

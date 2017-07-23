@@ -1,0 +1,78 @@
+%div.container
+  %div.col-md-8
+    %h2
+      = @todos.length
+      Todos
+    %div.row
+      %div.col-md-4
+        %form{:method => 'post', :action => '/todos/done/delete'}
+          %button.btn.btn-default.btn-block{:type => 'submit'}
+            %span.fa.fa-times
+            Delete completed tasks
+      %div.col-md-4
+        %form{:method => 'post', :action => '/todos/mark/done'}
+          %button.btn.btn-success.btn-block{:type => 'submit'}
+            %span.fa.fa-check-square
+            Mark all as completed
+      %div.col-md-4
+        %form{:method => 'post', :action => '/todos/mark/undone'}
+          %button.btn.btn-danger.btn-block{:type => 'submit'}
+            %span.fa.fa-square
+            Mark all as uncompleted
+
+    - @todos.each_with_index do |todo, i|
+      %p.panel
+        %form{:method => 'post', :action => "/todo/toggle/#{todo.id}", :name => "todo_#{todo.id}_form"}
+          %div
+            %div.col-md-1.text-center
+              %span.text-muted
+                = i + 1
+            %div.col-md-11
+              - if todo.status != 0
+                %input{:type => 'checkbox', 'checked' => '', :name => 'status', :onclick => "document.todo_#{todo.id}_form.submit();"}
+              - else
+                %input{:type => 'checkbox', :name => 'status', :onclick => "document.todo_#{todo.id}_form.submit();"}
+              %label{:for => 'status'}
+                %a{:href => "/todo/#{todo.id}"}
+                  = todo.name
+
+              %span.dropdown.dropdown-hover.text-info
+                %small.fa.fa-caret-down
+                %ul.dropdown-menu
+                  %li
+                    %a{:href => "/todo/edit/#{todo.id}"}
+                      %span.fa.fa-pencil
+                      Edit
+                  %li
+                    %a{:href => "/todo/delete/#{todo.id}"}
+                      %span.fa.fa-times
+                      Delete
+                  %li.divider
+                  %li
+                    %a{:href => "/todo/#{todo.id}"}
+                      %span.fa.fa-eye
+                      Show
+
+              -# %em.text-muted= (' &sdot; ' + truncate(todo.description, 40)) if !todo.description.empty?
+              %em.text-muted= (truncate(todo.description, 40)) if !todo.description.empty?
+
+              %a.pull-right.text-muted{:href => "/todo/edit/#{todo.id}"}
+                %span.fa.fa-pencil
+
+    %p.text-right
+      %span.fa.fa-file-o
+      Export to
+      %a{:href => '/todos/export/json'} JSON
+      ,
+      %a{:href => '/todos/export/ascii'} ASCII
+      or
+      %a{:href => '/todos/export/ascii/long'} long ASCII
+
+  %div.col-md-4
+    %h2 Create new
+    %form{:method => 'post', :action => '/todo/new'}
+      %label{:for => 'name'} Name
+      %input.form-group.form-control{:type => 'text', :placeholder => 'Todo name', :name => 'name'}
+      %label{:for => 'description'} Description
+      %textarea.form-group.form-control{:placeholder => 'Description', :name => 'description'}
+      %input.form-group.btn.btn-default{:type => 'submit', :value => 'Create'}

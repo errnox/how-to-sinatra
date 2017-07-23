@@ -1,0 +1,25 @@
+%div.conainer
+  %div.col-md-6.col-md-offset-3
+    %h2 Edit Post
+    %form.form-input{:method => 'post', :action => "/todo/edit/#{@todo.id}"}
+      %input{:type => 'hidden', :name => 'id', :value => "#{@todo.id}"}
+      %label{:for => 'name'} Name
+      %input.form-control{:type => 'text', :name => 'name', :placeholder => 'Todo Name', :value => "#{@todo.name}"}
+      %label{:for => 'desscription'} Desscription
+      %textarea.form-control{:type => 'text', :name => 'description', :placeholder => 'Todo Description', :rows => '8'}= @todo.description
+      %label
+        - if @todo.status == 0
+          %input{:type => 'checkbox', :name => 'status'}
+        - else
+          %input{:type => 'checkbox', :name => 'status', :checked => ''}
+        Completed
+      %hr
+      %div.row
+        %div.col-md-3.col-md-offset-3
+          %a.btn.btn-block{:href => "/todo/#{@todo.id}"}
+            %span.fa.fa-times
+              Cancel
+        %div.col-md-3.col-md-offset-1
+          %button.btn.btn-default.btn-block{:type => 'submit'}
+            %span.fa.fa-check-square
+            OK

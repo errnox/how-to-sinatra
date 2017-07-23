@@ -1,0 +1,20 @@
+%div.container
+  %div.col-md-12
+    %h2 Settings
+    %div.container.list-group
+      %div.col-md-12.list-group-item
+        %form{:method => 'post', :action => '/stats/settings', :name => 'stats_form'}
+          %input{:type => 'hidden', :name => 'request_url', :value => "#{request.url}"}
+          %label
+            - if settings.stats_no_html
+              %input{:type => 'checkbox', :name => 'stats_no_html', :onclick => 'document.stats_form.submit();'}
+            - else
+              %input{:type => 'checkbox', :name => 'stats_no_html', :onclick => 'document.stats_form.submit();', :checked => 'true'}
+            Stats HTML
+          %hr
+          %label
+            - if settings.stats_no_stdout
+              %input{:type => 'checkbox', :name => 'stats_no_stdout', :onclick => 'document.stats_form.submit();'}
+            - else
+              %input{:type => 'checkbox', :name => 'stats_no_stdout', :onclick => 'document.stats_form.submit();', :checked => 'true'}
+            Stats stdout

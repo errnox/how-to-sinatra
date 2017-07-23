@@ -1,0 +1,7 @@
+%div.container
+  %div.col-md-12
+    %h2 Message
+    - if @message == '' || @message == nil
+      %em There is no message right now.
+    - else
+      %pre= @message

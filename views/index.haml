@@ -1,0 +1,82 @@
+%div.container
+  %div.col-md-9
+    %h2
+      %span.fa.fa-home
+      Test
+    %p This is a simple test.
+
+    %hr
+    %h3 Text Image
+    %p
+      Check out the
+      %a{:href => url('/textimage/new')}
+        %span.fa.fa-picture-o
+        text image
+      example.
+
+    %hr
+    %h3 Todos
+    %p
+      Here is a simple
+      %a{:href => url('/todos')}
+        %span.fa.fa-check-square
+        todo list
+      \.
+    %p
+      Or run some completely insecure
+      %a{:href => url('/todos/eval')}
+        %span.fa.fa-terminal
+          queries
+      on the todo list data.
+
+
+  %div.col-md-3
+    %h2 Links
+    %ul.list-group
+      %li
+        %a{:href => url('/settings')} Settings
+      %li
+        %a{:href => url('/foo')} Foo
+      %li
+        %a{:href => url('/bar')} Bar
+      %li
+        %a{:href => url('/number')} Number
+      %li
+        %a{:href => url('/number/1')} Number 1
+      %li
+        %a{:href => url('/number/2')} Number 2
+      %li
+        %a{:href => url('/number/123')} Number 123
+      %li
+        %a{:href => url('/info')} Info
+      %li
+        %a{:href => url('/stream')} Stream
+      %li
+        %a{:href => url('/json')} JSON
+      %li
+        %a{:href => url('/templates/inline')} Inline templates
+      %li
+        - if session[:user_name] == nil || session[:user_name] == ''
+          %a{:href => url('/session') } Session
+        - else
+          %a{:href => "session?user_name=#{session[:user_name]}" } Session
+      %li
+        %a{:href => url('/halt')} Halt request
+      %li
+        %a{:href => url('/stream/custom')} Stream
+      %li
+        %a{:href => url('/redirect')} Redirect
+      %li
+        %a{:href => url('/message')} Message
+      %li
+        %a{:href => url('/file/txt')} Get text file
+      %li
+        %a{:href => url('/file/png')} Get image file
+      %li
+        %a{:href => url('/useragent')} User agent
+      %li
+        %a{:href => url('/cookies')} Cookies
+      %li
+        %a{:href => url('/download')} Download file
+      %li
+        %a{:href => url('/files')} Files

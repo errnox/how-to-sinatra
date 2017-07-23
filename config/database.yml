@@ -1,0 +1,6 @@
+development:
+  adapter: sqlite3
+  encoding: unicode
+  database: db
+  host: localhost
+  timeout: 5000

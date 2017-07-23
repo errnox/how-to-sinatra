@@ -1,0 +1,22 @@
+@import 'vendor/bootstrap.min';
+@import 'vendor/font-awesome.min.scss';
+@import 'compass';
+
+.page-header {
+  @include background-image(linear-gradient(top, white 85%, #EFEFEF));
+  margin-top: 0;
+  padding-top: 15px;
+  padding-bottom: 0;
+}
+
+.dropdown.dropdown-hover:hover .dropdown-menu {
+  display: block;
+  top: -5px;
+}
+
+.clear-pre {
+  font-family: Helvetica;
+  background-color: white;
+  border: none;
+  border-radius: 0;
+}

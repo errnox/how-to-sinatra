@@ -1,0 +1,20 @@
+%div.container
+  %div.col-md-12
+    %h2
+      %span.fa.fa-terminal
+      Query
+    %form{:method => 'post', :action => '/todos/eval'}
+      %textarea.form-control{:name => 'query', :placeholder => 'Todo.all', :rows => 10}
+        = @last_query
+      %hr
+      %p.text-center
+        %button.btn.btn-default{:type => 'submit'}
+          %span.fa.fa-play
+          Run
+
+%div.container
+  %div.col-md-12
+    %h2
+      %span.fa.fa-eye
+      Output
+    %pre= @output

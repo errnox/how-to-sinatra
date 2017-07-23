@@ -1,0 +1,52 @@
+!!! html
+%html
+  %head
+    %link{:href => '/assets/app.css', :rel => 'stylesheet', :type => 'text/css'}
+    -# %link{:href => '/stylesheets/bootstrap.min.css', :rel => 'stylesheet', :type => 'text/css'}
+    -# %link{:href => '/stylesheets/font-awesome.min.css', :rel => 'stylesheet', :tpye => 'text/css'}
+    %meta{:charset => 'utf-8'}
+  %body
+
+    %div.page-header
+      %div.container
+        %div.col-md-3
+          %a{:href => '/'}
+            %strong
+              %span.fa.fa-cloud
+              Test Application
+        %div.col-md-3
+          %form.input-group.panel{:method =>  'post', :action => '/todo/new/inline'}
+            %input{:type => 'hidden', :name => 'redirect_url', :value => "#{request.url}"}
+            %input.form-control{:type => 'text', :name => 'name', :placeholder => 'New todo name', :style => 'width: 200px;'}
+            %button.btn.btn-default.input-group-button{:type => 'submit'}
+              %span.fa.fa-check
+        %div.col-md-6
+          %p.text-right
+            %a{:href => '/info'} Info
+            |
+            %a{:href => '/settings'} Settings
+
+    -# %h2= path(:color, :name => 'red', :value => '#FF0000')
+    -# %h2= path :blue, :name => 'blue', :value => 'BLUE'
+    -# %h2= path :something, :name => 'something', :value => 'SOMETHING'
+    -# %h2= path :route, :name => 'barfoo'
+    %div.container
+      %div.col-md-12= statsbar
+
+    %div.container
+      %div.col-md-12
+        - if session[:user_name]
+          %p.text-right
+            %strong= session[:user_name]
+          %hr
+    - unless @is_home
+      %div.container
+        %p &nbsp;
+      %div.container
+        %div.col-md-12
+          %p
+            %a.btn.btn-default{:href => '/'}
+              %span.fa.fa-chevron-left
+              Home
+    = yield
+    %script{:type => 'text/javascript', :src => '/assets/app.js'}

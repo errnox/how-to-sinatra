@@ -1,0 +1,12 @@
+%div.container
+  %div.col-md-12
+    %a.btn.btn-default.pull-right{:href => '/files'}
+      %span.fa.fa-list-ul
+      See all files
+    %h2
+      %span.fa.fa-file-o
+      = @file[:name]
+      %small
+        %a{:href => "/files/download/#{@file[:name]}"}
+          %span.fa.fa-cloud-download
+    %pre= @file[:content]

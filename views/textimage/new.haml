@@ -1,0 +1,56 @@
+%div.container
+  %div.col-md-4
+    %h2
+      Text Image
+      %small (uses ImageMagick)
+    %form{:method => 'post', :action => "/images/#{@image_name}"}
+      %input.form-control{:type => 'hidden', :name => "#{@image_name}"}
+
+
+      %label{:for => 'image_text'} Image text
+      %textarea.form-control{:type => 'text', :name => 'image_text', :placeholder => 'Text'}
+
+      %label{:for => 'font_size'} Font size
+      %input.form-control{:type => 'number', :name => 'font_size', :placeholder => '14'}
+
+      %label{:for => 'foreground_color'} Text color
+      %select.form-control{:name => 'foreground_color'}
+        %option{:value => 'white', :selected =>''} white
+        %option{:value => 'black'} black
+        %option{:value => 'red'} red
+        %option{:value => 'green'} green
+        %option{:value => 'blue'} blue
+
+      %label{:for => 'background_color'} Background
+      %select.form-control{:name => 'background_color'}
+        %option{:value => 'black', :selected =>''} black
+        %option{:value => 'white'} white
+        %option{:value => 'red'} red
+        %option{:value => 'green'} green
+        %option{:value => 'blue'} blue
+
+      %label{:for => 'font'} Font
+      %select.form-control{:name => 'font'}
+        %option{:value => 'Helvetica', :selected =>''} Helvetica
+        %option{:value => 'Monospace'} Monospace
+        %option{:value => 'Arial'} Arial
+
+      %hr
+      %label
+        %input{:type => 'checkbox', :name => 'use_padding', :value => 'true', :checked => ''}
+        Use padding
+
+      %hr
+      %p.text-center
+        %input.btn.btn-default{:type => 'submit', :value => 'OK, go!'}
+
+  %div.col-md-4.col-md-offset-2
+    %hr
+    %div.thumbnail
+      %a{:href => '/images/image.png'}
+        %img{:src => '/images/image.png', :alt => '[Image]'}
+      %div.caption
+        %p.text-center
+          %a{:href => '/downloads/textimage'}
+            %span.fa.fa-download
+            Download

@@ -1,0 +1,29 @@
+%div.container
+  %div.col-md-12
+    %div.col-md-4.col-md-offset-4
+      - if !@message.blank?
+        %p.text-center.panel.panel-default.alert
+          %span.fa.fa-info
+          = @message
+      %form.alert.alert-info{:method => 'post', :action => '/files/upload', :enctype => 'multipart/form-data'}
+        %input.form-group{:type => 'file', :multiple => 'multiple', :name => 'files[]'}
+        %hr
+        %button.btn.btn-default.form-group.center-block{:type => 'submit'}
+          %span.fa.fa-cloud-upload.fa-lg
+          Upload
+  %div.col-md-12
+    %h2 Files
+    %div.list-group
+      - @files.each_with_index do |file, i|
+        %div.row.list-group-item
+          %div.col-md-3
+            %strong
+              %span.fa.fa-file-o
+              = file[:name]
+              %a{:href => "/files/download/#{file[:name]}"}
+                %span.fa.fa-cloud-download
+          %div.col-md-8
+            %pre.clear-pre.text-muted= file[:content]
+          %div.col-md-1
+            %a.btn.btn-default.btn-sm.pull-right{:href => "/files/index/#{file[:name]}"}
+              %span.fa.fa-eye
